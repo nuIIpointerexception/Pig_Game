@@ -114,9 +114,6 @@ public class World {
 		spawnX = Utils.parseInt(tokens[2]);
 		spawnY = Utils.parseInt(tokens[3]);
 
-		double treeSpawnChance = 0.25;
-		double stoneSpawnChance = 0.1;
-
 		int grassTileValue = 0;
 		int dirtTileValue = 1;
 
@@ -124,9 +121,9 @@ public class World {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]);
-				if (tiles[x][y] == grassTileValue && random.nextDouble() < treeSpawnChance) {
+				if (tiles[x][y] == grassTileValue && random.nextDouble() < 0.25) {
 					entityManager.addEntity(new Tree(handler, x * Tile.TILEWIDTH, y * Tile.TILEHEIGHT));
-				} else if ((tiles[x][y] == grassTileValue || tiles[x][y] == dirtTileValue) && random.nextDouble() < stoneSpawnChance) {
+				} else if ((tiles[x][y] == grassTileValue || tiles[x][y] == dirtTileValue) && random.nextDouble() < 0.1) {
 					entityManager.addEntity(new Rock(handler, x * Tile.TILEWIDTH, y * Tile.TILEHEIGHT));
 				}
 			}
