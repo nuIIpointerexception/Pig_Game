@@ -3,7 +3,7 @@ package dev.codenmore.tilegame.world;
 import dev.codenmore.tilegame.tiles.Tile;
 
 public class Chunk {
-    public static final int CHUNK_SIZE = 16;
+    public static final int CHUNK_SIZE = 4;
     private Tile[][] tiles;
 
     public Chunk() {

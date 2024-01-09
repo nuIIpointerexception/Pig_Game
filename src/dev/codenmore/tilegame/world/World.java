@@ -21,7 +21,7 @@ public class World {
 	private int width, height; 
 	private int spawnX, spawnY;
 	private Map<Point, Chunk> chunks;
-	private final int chunkSize = 16;
+	private final int chunkSize = 4;
 	//Entities
 	private EntityManager entityManager;
 	private ItemManager itemManager;
@@ -79,28 +79,30 @@ public class World {
 		float zoom = handler.getGameCamera().getZoomFactor();
 		GameCamera camera = handler.getGameCamera();
 
-		int visibleWorldWidth = (int) (handler.getWidth() / zoom);
-		int visibleWorldHeight = (int) (handler.getHeight() / zoom);
+		int playerX = (int) entityManager.getPlayer().getX();
+		int playerY =  (int) entityManager.getPlayer().getY();
 
-		int xStart = Math.max(0, (int) (camera.getxOffset() / Tile.TILEWIDTH));
-		int xEnd = Math.min(width, (xStart + visibleWorldWidth / Tile.TILEWIDTH) + 2);
-		int yStart = Math.max(0, (int) (camera.getyOffset() / Tile.TILEHEIGHT));
-		int yEnd = Math.min(height, (yStart + visibleWorldHeight / Tile.TILEHEIGHT) + 2);
+		int playerChunkX = playerX / (Chunk.CHUNK_SIZE * Tile.TILEWIDTH);
+		int playerChunkY = playerY / (Chunk.CHUNK_SIZE * Tile.TILEHEIGHT);
 
-		float scaledWidth = Tile.TILEWIDTH * zoom;
-		float scaledHeight = Tile.TILEHEIGHT * zoom;
-		int ceilWidth = (int) Math.ceil(scaledWidth);
-		int ceilHeight = (int) Math.ceil(scaledHeight);
+		int chunkRange = 3;
+		int xChunkStart = Math.max(0, playerChunkX - chunkRange);
+		int xChunkEnd = Math.min(width - 1, playerChunkX + chunkRange);
+		int yChunkStart = Math.max(0, playerChunkY - chunkRange);
+		int yChunkEnd = Math.min(height - 1, playerChunkY + chunkRange);
 
-		for (int y = yStart; y < yEnd; y++) {
-			float baseY = (y * Tile.TILEHEIGHT - camera.getyOffset()) * zoom;
-			int ceilY = (int) Math.ceil(baseY);
-
-			for (int x = xStart; x < xEnd; x++) {
-				float baseX = (x * Tile.TILEWIDTH - camera.getxOffset()) * zoom;
-				int ceilX = (int) Math.ceil(baseX);
-
-				getTile(x, y).render(g, ceilX, ceilY, ceilWidth, ceilHeight);
+		for (int chunkY = yChunkStart; chunkY <= yChunkEnd; chunkY++) {
+			for (int chunkX = xChunkStart; chunkX <= xChunkEnd; chunkX++) {
+				for (int y = 0; y < Chunk.CHUNK_SIZE; y++) {
+					for (int x = 0; x < Chunk.CHUNK_SIZE; x++) {
+						int worldX = chunkX * Chunk.CHUNK_SIZE + x;
+						int worldY = chunkY * Chunk.CHUNK_SIZE + y;
+						getTile(worldX, worldY).render(g, (int) Math.ceil( (worldX * Tile.TILEWIDTH - camera.getxOffset()) * zoom),
+								(int) Math.ceil((worldY * Tile.TILEHEIGHT - camera.getyOffset()) * zoom),
+								(int) Math.ceil(Tile.TILEWIDTH * zoom),
+								(int) Math.ceil(Tile.TILEHEIGHT * zoom));
+					}
+				}
 			}
 		}
 

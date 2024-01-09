@@ -129,8 +129,8 @@ public class Game implements Runnable {
 		
 		init();
 		
-		int fps = 60;  // max amount of time we're allowed to have to run the tick and render methods
-		double timePerTick = 1000000000 / fps;    //measuring time in nano seconds
+		int fps = 60;
+		double timePerTick = 1000000000 / fps;
 		double delta = 0;
 		long now;
 		long lastTime = System.nanoTime();
@@ -139,7 +139,7 @@ public class Game implements Runnable {
 		
 		while(running) {
 			now = System.nanoTime();
-			delta += (now - lastTime) / timePerTick;  //when and when not to call the render methods
+			delta += (now - lastTime) / timePerTick;
 			timer += now - lastTime;
 			lastTime = now;
 			
@@ -156,7 +156,7 @@ public class Game implements Runnable {
 			}
 		}
 		
-		stop(); // im fall, dass es noch nicht stoppt
+		stop();
 		
 	}
 
