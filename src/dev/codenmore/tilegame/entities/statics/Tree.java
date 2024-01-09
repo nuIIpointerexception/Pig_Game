@@ -13,12 +13,11 @@ public class Tree extends StaticEntity {
 	public Tree(Handler handler, float x, float y) {
 		super(handler, x, y, Tile.TILEWIDTH, Tile.TILEHEIGHT);
 
-		this.health = 2;
+		this.setHealth(2);
 		bounds.x = 10;
 		bounds.y = (int) (height / 1.5f);
 		bounds.width = width - 20;
 		bounds.height = (int) (height - height / 1.5f);
-		healthBar = new HealthBar();
 	}
 
 	@Override
@@ -29,7 +28,6 @@ public class Tree extends StaticEntity {
 	@Override
 	public void hurt(int amt){
 		super.hurt(amt);
-		healthBar.registerHit();
 	}
 
 	@Override
@@ -46,8 +44,6 @@ public class Tree extends StaticEntity {
 				(int) (width * zoom),
 				(int) (height * zoom),
 				null);
-		healthBar.render(g, handler, x, y, width, health, 2);
-
 	}
 
 }

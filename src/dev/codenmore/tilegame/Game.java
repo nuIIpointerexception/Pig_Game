@@ -13,10 +13,7 @@ import dev.codenmore.tilegame.gfx.ImageLoader;
 import dev.codenmore.tilegame.gfx.SpriteSheet;
 import dev.codenmore.tilegame.input.KeyManager;
 import dev.codenmore.tilegame.input.MouseManager;
-import dev.codenmore.tilegame.states.GameState;
-import dev.codenmore.tilegame.states.MenuState;
-import dev.codenmore.tilegame.states.PopupState;
-import dev.codenmore.tilegame.states.State;
+import dev.codenmore.tilegame.states.*;
 
 public class Game implements Runnable {
 	
@@ -33,6 +30,7 @@ public class Game implements Runnable {
 	public State gameState;
 	public State menuState;
 	public State popupState;
+	public State hudState;
 	
 	//Input
 	private KeyManager keyManager;
@@ -74,6 +72,7 @@ public class Game implements Runnable {
 		
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
+		hudState = new HudState(handler);
 
 		State.setState(menuState);
 		
@@ -82,6 +81,7 @@ public class Game implements Runnable {
 	private void tick() {
 		keyManager.tick();
 		mouseManager.tick();
+		hudState.tick();
 
 		if(State.getState() != null) {
 			State.getState().tick();
@@ -115,6 +115,8 @@ public class Game implements Runnable {
 		
 		if(State.getState() != null)
 			State.getState().render(g);
+
+		hudState.render(g);
 		
 		//End Drawing!
 		bs.show();

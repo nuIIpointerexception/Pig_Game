@@ -87,7 +87,6 @@ public class MouseManager implements MouseListener, MouseMotionListener, MouseWh
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		targetZoom -= e.getWheelRotation() * 0.05f;
 		targetZoom = Math.max(1.0f, Math.min(2.0f, targetZoom));
-		System.out.println(targetZoom);
 	}
 
 	@Override
@@ -131,5 +130,9 @@ public class MouseManager implements MouseListener, MouseMotionListener, MouseWh
 		t /= d;
 		t--;
 		return c * (t * t * t + 1) + b;
+	}
+
+	public void setLeftPressed(boolean b) {
+		leftPressed = b;
 	}
 }

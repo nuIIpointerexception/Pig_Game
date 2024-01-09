@@ -11,7 +11,7 @@ public abstract class Entity {
 	protected Handler handler;
 	protected float x, y;         //protected: restrict visibility, can be accessed by the members of its on class, float for smooth movement in game 
     protected int width, height;
-	protected int health;
+	protected int health, maxHealth;
 	protected boolean active = true;
     protected Rectangle bounds;
                              
@@ -21,7 +21,6 @@ public abstract class Entity {
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		
 		bounds = new Rectangle(0, 0, width, height);
 	}
 	
@@ -95,10 +94,15 @@ public abstract class Entity {
 
 	public void setHealth(int health) {
 		this.health = health;
+		this.maxHealth = health;
 	}
 
 	public boolean isVisible() {
 		return this.y >= handler.getGameCamera().getyOffset() - this.height && this.y <= handler.getGameCamera().getyOffset() + handler.getHeight() + 32 &&
 				this.x >= handler.getGameCamera().getxOffset() - this.width && this.x <= handler.getGameCamera().getxOffset() + handler.getWidth() + 32;
 	}
+
+    public float getMaxHealth() {
+		return maxHealth;
+    }
 }

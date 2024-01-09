@@ -4,12 +4,13 @@ import java.awt.Graphics;
 
 import dev.codenmore.tilegame.Game;
 import dev.codenmore.tilegame.Handler;
+import dev.codenmore.tilegame.hud.HealthBar;
 
 public abstract class State {
 	
 	private static State currentState = null;
-	
-	public static void setState(State state) {
+
+    public static void setState(State state) {
 		currentState = state;
 	}
 	
