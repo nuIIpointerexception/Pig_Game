@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import dev.codenmore.tilegame.Handler;
+import dev.codenmore.tilegame.ui.impl.UIObject;
 
 public class UIManager {
 	

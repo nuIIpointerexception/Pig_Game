@@ -99,11 +99,9 @@ public class Player extends Creature {
             int mouseX = handler.getMouseManager().getMouseX();
             int mouseY = handler.getMouseManager().getMouseY();
 
-            // Convert display coordinates to game world coordinates
             float gameWorldX = (mouseX / zoom) + xOffset;
             float gameWorldY = (mouseY / zoom) + yOffset;
 
-            // Check if click is in the direction of an entity and close enough
             Entity closestEntity = null;
             double minDistance = Double.MAX_VALUE;
 
@@ -114,7 +112,6 @@ public class Player extends Creature {
 
                 double distanceToEntity = Math.sqrt(Math.pow(e.getX() - x, 2) + Math.pow(e.getY() - y, 2));
                 if (distanceToEntity <= ATTACK_RADIUS) {
-                    // Check if the entity is in the direction of the click
                     float ex = e.getX() + e.getWidth() / 2;
                     float ey = e.getY() + e.getHeight() / 2;
                     float dx = gameWorldX - (x + width / 2);
@@ -211,20 +208,6 @@ public class Player extends Creature {
                 (int) (width * zoom),
                 (int) (height * zoom),
                 null);
-
-        // TODO: Remove this later, only for debugging
-        g.drawOval(handler.getMouseManager().getMouseX() - ATTACK_RADIUS, handler.getMouseManager().getMouseY() - ATTACK_RADIUS, ATTACK_RADIUS * 2, ATTACK_RADIUS * 2);
-        g.setColor(Color.red);
-        for (Entity e : handler.getWorld().getEntityManager().getEntities()) {
-            if (e.equals(this))
-                continue;
-
-            int x = (int) ((e.getX() - handler.getGameCamera().getxOffset()) * zoom);
-            int y = (int) ((e.getY() - handler.getGameCamera().getyOffset()) * zoom);
-            int width = (int) (e.getWidth() * zoom);
-            int height = (int) (e.getHeight() * zoom);
-            g.drawRect(x, y, width, height);
-        }
     }
 
     public void postRender(Graphics g){
@@ -241,7 +224,6 @@ public class Player extends Creature {
         return switch (currentDirection) {
             case RIGHT -> isMoving ? animRight.getCurrentFrame() : animStandRight.getCurrentFrame();
             case LEFT -> isMoving ? animLeft.getCurrentFrame() : animStandLeft.getCurrentFrame();
-            default -> animStandLeft.getCurrentFrame();
         };
     }
 

@@ -1,4 +1,4 @@
-package dev.codenmore.tilegame.ui;
+package dev.codenmore.tilegame.ui.impl;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;

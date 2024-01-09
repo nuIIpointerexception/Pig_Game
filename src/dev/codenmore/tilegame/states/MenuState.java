@@ -1,10 +1,10 @@
 package dev.codenmore.tilegame.states;
 
 import dev.codenmore.tilegame.Handler;
-import dev.codenmore.tilegame.gfx.Assets;
-import dev.codenmore.tilegame.ui.UIImageButton;
 import dev.codenmore.tilegame.ui.UIManager;
-import dev.codenmore.tilegame.ui.UITextButton;
+import dev.codenmore.tilegame.ui.impl.UISelector;
+import dev.codenmore.tilegame.ui.impl.UIText;
+import dev.codenmore.tilegame.ui.impl.UITextButton;
 
 import java.awt.*;
 
@@ -24,9 +24,19 @@ public class MenuState extends State {
 		int centerX = (handler.getWidth() - buttonWidth) / 2;
 		int centerY = (handler.getHeight() - buttonHeight) / 2;
 
-		uiManager.addObject(new UITextButton(centerX, centerY - 100, buttonWidth, buttonHeight, "Play", () -> {
+		uiManager.addObject(new UITextButton(centerX - 110, centerY - 100, buttonWidth, buttonHeight, "Play", () -> {
 			handler.getMouseManager().setUIManager(null);
 			State.setState(handler.getGame().gameState);
+		}));
+
+		uiManager.addObject(new UITextButton(centerX + 110, centerY - 100, buttonWidth, buttonHeight, "Quit", () -> {
+			System.exit(0);
+		}));
+
+		uiManager.addObject(new UIText(centerX, centerY + 60, buttonWidth, buttonHeight / 2, "Difficulty"));
+
+		uiManager.addObject(new UISelector(centerX, centerY + 100, buttonWidth, buttonHeight / 2, new String[]{"Easy", "Medium", "Hard"}, () -> {
+
 		}));
 	}
 

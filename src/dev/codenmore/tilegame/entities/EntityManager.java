@@ -14,10 +14,12 @@ public class EntityManager {
 	private Player player;
 	private ArrayList<Entity> entities;
 	private Comparator<Entity> renderSorter = (a, b) -> {
-        if(a.getY() + a.getHeight() < b.getY() + b.getHeight())
-            return -1;
-        return 1;
+        int ay = (int) (a.getY() + a.getHeight());
+        int by = (int) (b.getY() + b.getHeight());
+        // Handle the case where ay and by are equal
+        return Integer.compare(ay, by);
     };
+
 
 	public EntityManager(Handler handler, Player player) {
 		this.handler = handler;

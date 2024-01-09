@@ -3,7 +3,7 @@ package dev.codenmore.tilegame.states;
 import dev.codenmore.tilegame.Handler;
 import dev.codenmore.tilegame.gfx.Assets;
 import dev.codenmore.tilegame.ui.UIManager;
-import dev.codenmore.tilegame.ui.UITextButton;
+import dev.codenmore.tilegame.ui.impl.UITextButton;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

@@ -1,4 +1,6 @@
-package dev.codenmore.tilegame.ui;
+package dev.codenmore.tilegame.ui.impl;
+
+import dev.codenmore.tilegame.ui.ClickListener;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;

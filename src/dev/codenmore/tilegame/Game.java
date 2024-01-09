@@ -116,8 +116,10 @@ public class Game implements Runnable {
 		if(State.getState() != null)
 			State.getState().render(g);
 
-		hudState.render(g);
-		
+		if (!(State.getState() instanceof PopupState) && !(State.getState() instanceof MenuState)) {
+			hudState.render(g);
+		}
+
 		//End Drawing!
 		bs.show();
 		g.dispose();
