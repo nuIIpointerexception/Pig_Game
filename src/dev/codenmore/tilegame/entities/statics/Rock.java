@@ -13,7 +13,7 @@ public class Rock extends StaticEntity {
 	public Rock(Handler handler, float x, float y) {
 		super(handler, x, y, Tile.TILEWIDTH, Tile.TILEHEIGHT);
 
-		this.setHealth(3);
+		this.setHealth(20);
 		bounds.x = 10;
 		bounds.y = (int) (height / 1.5f);
 		bounds.width = width - 20;

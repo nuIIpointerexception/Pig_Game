@@ -86,11 +86,6 @@ public class Player extends Creature {
     }
 
     private void checkAttacks() {
-        attackTimer = System.currentTimeMillis() - lastAttackTimer;
-        if(attackTimer < attackCooldown) {
-            return;
-        }
-
         if (handler.getMouseManager().isLeftPressed()) {
             float zoom = handler.getGameCamera().getZoomFactor();
             float xOffset = handler.getGameCamera().getxOffset();
@@ -131,7 +126,6 @@ public class Player extends Creature {
                 ((HudState) handler.getGame().hudState).getHealthBar().resetTimer();
             }
 
-            lastAttackTimer = System.currentTimeMillis();
             handler.getMouseManager().setLeftPressed(false);
         }
     }

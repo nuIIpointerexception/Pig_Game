@@ -1,9 +1,13 @@
 package dev.codenmore.tilegame.input;
 
+import dev.codenmore.tilegame.ui.UIManager;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyManager implements KeyListener {
+
+		private UIManager uiManager;
 	
 		private boolean[] keys, justPressed, cantPress;
 
@@ -69,7 +73,14 @@ public class KeyManager implements KeyListener {
 			return;
 		}
 		keys[e.getKeyCode()] = false;
+
+		if (uiManager != null)
+			uiManager.onKeyRelease(e);
 	}
-	
+
+
+	public void setUIManager(UIManager uiManager) {
+		this.uiManager = uiManager;
+	}
 
 }

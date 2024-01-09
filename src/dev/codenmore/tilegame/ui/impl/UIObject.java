@@ -2,6 +2,7 @@ package dev.codenmore.tilegame.ui.impl;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public abstract class UIObject {
@@ -80,7 +81,9 @@ public abstract class UIObject {
 	public void setHovering(boolean hovering) {
 		this.hovering = hovering;
 	}
-	
-	
 
+
+	public void onKeyRelease(KeyEvent e) {
+		// TODO Auto-generated method stub
+	}
 }

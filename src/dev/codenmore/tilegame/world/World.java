@@ -30,16 +30,16 @@ public class World {
 
 	private Random random;
 
-	private long seed = "testseed".hashCode();
+	private long seed;
 
 
 	
-	public World(Handler handler) {
+	public World(Handler handler, long seed) {
 		this.handler = handler;
 		this.width = 10;
 		this.height = 10;
 		chunks = new HashMap<>();
-
+		this.seed = seed;
 		random = new Random(seed);
 
 		itemManager = new ItemManager(handler);

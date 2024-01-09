@@ -13,7 +13,8 @@ public class GameState extends State{
 	
 	public GameState(Handler handler) {
 		super(handler);
-		world = new World(handler);
+		// TODO: Saving and loading worlds
+		world = new World(handler, "test".hashCode());
 		handler.setWorld(world);
 	}
 		

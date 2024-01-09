@@ -135,8 +135,7 @@ public class Game implements Runnable {
 		long now;
 		long lastTime = System.nanoTime();
 		long timer = 0;
-		int ticks = 0;
-		
+
 		while(running) {
 			now = System.nanoTime();
 			delta += (now - lastTime) / timePerTick;
@@ -146,12 +145,10 @@ public class Game implements Runnable {
 			if(delta >= 1) {
 			    tick();
 			    render();
-			    ticks++;
-			    delta--;
+				delta--;
 			}    
 			
 			if(timer >= 1000000000) {
-				ticks = 0;
 				timer = 0;
 			}
 		}

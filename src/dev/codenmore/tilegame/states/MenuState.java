@@ -2,6 +2,7 @@ package dev.codenmore.tilegame.states;
 
 import dev.codenmore.tilegame.Handler;
 import dev.codenmore.tilegame.ui.UIManager;
+import dev.codenmore.tilegame.ui.impl.UIInput;
 import dev.codenmore.tilegame.ui.impl.UISelector;
 import dev.codenmore.tilegame.ui.impl.UIText;
 import dev.codenmore.tilegame.ui.impl.UITextButton;
@@ -17,6 +18,7 @@ public class MenuState extends State {
 		uiManager = new UIManager(handler);
 
 		handler.getMouseManager().setUIManager(uiManager);
+		handler.getkeyManager().setUIManager(uiManager);
 
 		int buttonWidth = 200;
 		int buttonHeight = 100;
@@ -38,6 +40,9 @@ public class MenuState extends State {
 		uiManager.addObject(new UISelector(centerX, centerY + 100, buttonWidth, buttonHeight / 2, new String[]{"Easy", "Medium", "Hard"}, () -> {
 
 		}));
+
+		// TODO: use seed.
+		uiManager.addObject(new UIInput(centerX, centerY + 350, buttonWidth, buttonHeight / 2, "", "Seed"));
 	}
 
 

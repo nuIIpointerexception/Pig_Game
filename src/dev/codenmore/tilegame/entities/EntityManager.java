@@ -34,7 +34,6 @@ public class EntityManager {
 			Entity e = it.next();
             e.tick();
             if (!e.isActive()) {
-				e.die();
 				it.remove();
 			}
         }
